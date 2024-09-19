@@ -65,3 +65,23 @@ def tasks_carbon(request):
         return JsonResponse(task_carbonserializer.errors, status=400)
 
 
+@csrf_exempt
+def tasks_carbon_detail(request, pk):
+    try:
+
+        tasks_carbon = Task_Carbon.objects.get(pk=pk)
+    
+    except:
+
+        return HttpResponse(status=404)
+
+    
+    if(request.method == 'DELETE'):
+
+        tasks_carbon.delete()
+
+        return HttpResponse(status=204)
+
+
+
+
